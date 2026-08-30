@@ -129,6 +129,15 @@ export default function App() {
   const heroMovie = movies.length > 0 ? movies[0] : null;
   const displayedMovies = showFavoritesOnly ? favorites : movies;
 
+  const DEFAULT_POSTER = 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop';
+
+  const getValidPosterUrl = (url) => {
+    if (!url || url === 'undefined' || url === 'null' || url.trim() === '') {
+      return DEFAULT_POSTER;
+    }
+    return url;
+  };
+
   return (
     <div className="bg-[#F9F9F9] min-h-screen text-slate-800 font-sans selection:bg-blue-600 selection:text-white flex flex-col justify-between">
       
@@ -213,7 +222,7 @@ export default function App() {
       {/* HERO BANNER */}
       {!showFavoritesOnly && heroMovie && (
         <div className="relative h-[65vh] md:h-[75vh] w-full bg-cover bg-center flex items-end pb-12 px-4 md:px-12 mt-16" style={{
-          backgroundImage: `linear-gradient(to top, #F9F9F9 5%, transparent 20%), linear-gradient(to right, rgba(255,255,255,0.95) 10%, rgba(255,255,255,0.4) 40%, transparent 80%), url(${heroMovie.Poster_Link})`
+          backgroundImage: `linear-gradient(to top, #F9F9F9 5%, transparent 20%), linear-gradient(to right, rgba(255,255,255,0.95) 10%, rgba(255,255,255,0.4) 40%, transparent 80%), url(${getValidPosterUrl(selectedMovie.Poster_Link)})`
         }}>
           <div className="max-w-2xl z-10">
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm tracking-wide">
@@ -402,10 +411,10 @@ export default function App() {
                         className="cursor-pointer group relative rounded-lg overflow-hidden bg-slate-50 hover:shadow-md transition border border-slate-100"
                       >
                         <img 
-                          src={rec.Poster_Link || 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop'} 
-                          alt={rec.Series_Title || 'Recommendation'} 
-                          className="h-32 w-full object-cover group-hover:scale-105 transition duration-300" 
-                          onError={(e) => { 
+                          src={getValidPosterUrl(rec.Poster_Link)} 
+                            alt={rec.Series_Title || 'Recommendation'} 
+                            className="h-32 w-full object-cover group-hover:scale-105 transition duration-300" 
+                            onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop'; 
                           }}
