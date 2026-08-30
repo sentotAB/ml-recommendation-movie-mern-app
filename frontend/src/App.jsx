@@ -4,9 +4,15 @@ import MovieCard from './components/MovieCard';
 import { Search, Heart, Play, Info, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000' || 'https://raiflix.duckdns.org';
-const ML_BASE_URL = import.meta.env.VITE_ML_API_URL || 'http://localhost:8000' || 'https://raiflix.duckdns.org/ml';
-const API_BASE = `${BASE_URL}/movies`;     
+const BASE_URL = (import.meta.env.VITE_API_URL && import.meta.env.VITE_API_URL !== 'undefined')
+  ? import.meta.env.VITE_API_URL
+  : 'https://raiflix.duckdns.org';
+
+const ML_BASE_URL = (import.meta.env.VITE_ML_API_URL && import.meta.env.VITE_ML_API_URL !== 'undefined')
+  ? import.meta.env.VITE_ML_API_URL
+  : 'https://raiflix.duckdns.org/ml';
+
+const API_BASE = `${BASE_URL}/movies`;    
 const GENRES = ['Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Horror', 'Mystery', 'Sci-Fi'];
 const YEARS = Array.from({ length: 105 }, (_, i) => (2024 - i).toString()); // Membuat array ['2024', '2023', ..., '1920']
 
