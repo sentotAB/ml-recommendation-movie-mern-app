@@ -401,7 +401,15 @@ export default function App() {
                         onClick={() => handleSelectMovie(rec)} 
                         className="cursor-pointer group relative rounded-lg overflow-hidden bg-slate-50 hover:shadow-md transition border border-slate-100"
                       >
-                        <img src={rec.Poster_Link} alt={rec.Series_Title} className="h-32 w-full object-cover group-hover:scale-105 transition duration-300" />
+                        <img 
+                          src={rec.Poster_Link || 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop'} 
+                          alt={rec.Series_Title || 'Recommendation'} 
+                          className="h-32 w-full object-cover group-hover:scale-105 transition duration-300" 
+                          onError={(e) => { 
+                            e.target.onerror = null;
+                            e.target.src = 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop'; 
+                          }}
+                        />
                         <div className="p-2 text-xs truncate font-medium text-slate-700">{rec.Series_Title}</div>
                       </div>
                     ))}

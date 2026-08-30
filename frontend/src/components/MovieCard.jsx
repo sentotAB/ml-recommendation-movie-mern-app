@@ -95,7 +95,11 @@ export default function MovieCard({ movie, onClick, isFavorite, onToggleFavorite
 
         <div className="aspect-[2/3] w-full overflow-hidden relative">
           <img 
-            src={movie.Poster_Link || 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop'} 
+              src={
+                (movie.Poster_Link && movie.Poster_Link !== 'undefined')
+                  ? movie.Poster_Link 
+                  : 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop'
+              } 
             alt={movieTitle} 
             onClick={() => onClick && onClick(movieId)}
             className="w-full h-full object-cover group-hover:brightness-50 transition duration-300 cursor-pointer"
