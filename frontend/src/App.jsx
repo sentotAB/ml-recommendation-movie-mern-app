@@ -222,7 +222,7 @@ export default function App() {
       {/* HERO BANNER */}
       {!showFavoritesOnly && heroMovie && (
         <div className="relative h-[65vh] md:h-[75vh] w-full bg-cover bg-center flex items-end pb-12 px-4 md:px-12 mt-16" style={{
-          backgroundImage: `linear-gradient(to top, #F9F9F9 5%, transparent 20%), linear-gradient(to right, rgba(255,255,255,0.95) 10%, rgba(255,255,255,0.4) 40%, transparent 80%), url(${getValidPosterUrl(selectedMovie.Poster_Link)})`
+          backgroundImage: `linear-gradient(to top, #F9F9F9 5%, transparent 20%), linear-gradient(to right, rgba(255,255,255,0.95) 10%, rgba(255,255,255,0.4) 40%, transparent 80%), url(${getValidPosterUrl(heroMovie?.Poster_Link)})`
         }}>
           <div className="max-w-2xl z-10">
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm tracking-wide">
@@ -364,7 +364,7 @@ export default function App() {
 
             {/* Header Modal Detail Film */}
             <div className="relative h-64 md:h-80 bg-cover bg-center flex items-end p-6" style={{
-              backgroundImage: `linear-gradient(to top, #FFFFFF 5%, transparent 60%), linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 70%), url(${selectedMovie.Poster_Link})`
+              backgroundImage: `linear-gradient(to top, #FFFFFF 5%, transparent 60%), linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 70%), url(${getValidPosterUrl(selectedMovie?.Poster_Link)})`
             }}>
               <div className="z-10">
                 <h2 className="text-2xl md:text-4xl font-black text-white drop-shadow-md">{selectedMovie.Series_Title}</h2>
