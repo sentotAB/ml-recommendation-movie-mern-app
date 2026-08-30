@@ -4,7 +4,9 @@ import MovieCard from './components/MovieCard';
 import { Search, Heart, Play, Info, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 
-const API_BASE = 'http://localhost:5000/api/movies';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const ML_BASE_URL = import.meta.env.VITE_ML_API_URL || 'http://localhost:8000';
+const API_BASE = `${BASE_URL}/movies`;     
 const GENRES = ['Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Horror', 'Mystery', 'Sci-Fi'];
 const YEARS = Array.from({ length: 105 }, (_, i) => (2024 - i).toString()); // Membuat array ['2024', '2023', ..., '1920']
 
@@ -84,7 +86,7 @@ export default function App() {
       if (movieData.Series_Title) {
         try {
           const recRes = await axios.get(
-            `http://localhost:5000/api/recommendations?title=${encodeURIComponent(movieData.Series_Title)}&num=10`
+            `${ML_BASE_URL}/recommendations?title=${encodeURIComponent(movieData.Series_Title)}&num=10`
           );
           setRecommendations(recRes.data.recommendations || recRes.data || []);
         } catch (fastApiErr) {
