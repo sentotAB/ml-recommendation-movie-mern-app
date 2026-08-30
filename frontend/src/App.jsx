@@ -4,7 +4,7 @@ import MovieCard from './components/MovieCard';
 import { Search, Heart, Play, Info, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const ML_BASE_URL = import.meta.env.VITE_ML_API_URL || 'http://localhost:8000';
 const API_BASE = `${BASE_URL}/movies`;     
 const GENRES = ['Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Horror', 'Mystery', 'Sci-Fi'];
