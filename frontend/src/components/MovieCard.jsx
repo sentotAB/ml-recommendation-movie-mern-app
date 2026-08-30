@@ -25,6 +25,16 @@ const getValidPosterUrl = (posterLink) => {
   return DEFAULT_POSTER;
 };
 
+function MovieCard({ movie, onClick, isFavorite, onToggleFavorite }) {
+  if (!movie) return null;
+  return (
+    <div onClick={() => onClick(movie)} className="bg-white rounded-xl shadow cursor-pointer p-2">
+      <img src={movie.Poster_Link} alt={movie.Series_Title} className="w-full h-48 object-cover rounded" />
+      <h3 className="font-bold text-sm mt-2">{movie.Series_Title}</h3>
+    </div>
+  );
+}
+
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState('');
