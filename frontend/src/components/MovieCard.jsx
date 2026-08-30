@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import MovieCard from './components/MovieCard';
 import { Search, Heart, Play, Info, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const BASE_URL = (import.meta.env.VITE_API_URL && import.meta.env.VITE_API_URL !== 'undefined')
