@@ -89,10 +89,10 @@ export default function App() {
       if (!movieData) return;
       setSelectedMovie(movieData);
 
-      if (movieData.Series_Title) {
+      if (movieData.series_title) {
         try {
           const recRes = await axios.get(
-            `${ML_BASE_URL}/recommendations?title=${encodeURIComponent(movieData.Series_Title)}&num=10`
+            `${ML_BASE_URL}/recommendations?title=${encodeURIComponent(movieData.series_title)}&num=10`
           );
           setRecommendations(recRes.data.recommendations || recRes.data || []);
         } catch (fastApiErr) {
@@ -106,11 +106,11 @@ export default function App() {
 
   const toggleFavorite = (movie) => {
     const exists = favorites.some((fav) => 
-      (movie._id && fav._id === movie._id) || fav.Series_Title === movie.Series_Title
+      (movie._id && fav._id === movie._id) || fav.series_title === movie.series_title
     );
     if (exists) {
       setFavorites(favorites.filter((fav) => 
-        (movie._id && fav._id !== movie._id) || fav.Series_Title !== movie.Series_Title
+        (movie._id && fav._id !== movie._id) || fav.series_title !== movie.series_title
       ));
     } else {
       setFavorites([...favorites, movie]);
@@ -222,14 +222,14 @@ export default function App() {
       {/* HERO BANNER */}
       {!showFavoritesOnly && heroMovie && (
         <div className="relative h-[65vh] md:h-[75vh] w-full bg-cover bg-center flex items-end pb-12 px-4 md:px-12 mt-16" style={{
-          backgroundImage: `linear-gradient(to top, #F9F9F9 5%, transparent 20%), linear-gradient(to right, rgba(255,255,255,0.95) 10%, rgba(255,255,255,0.4) 40%, transparent 80%), url(${getValidPosterUrl(heroMovie?.Poster_Link)})`
+          backgroundImage: `linear-gradient(to top, #F9F9F9 5%, transparent 20%), linear-gradient(to right, rgba(255,255,255,0.95) 10%, rgba(255,255,255,0.4) 40%, transparent 80%), url(${getValidPosterUrl(heroMovie?.poster_link)})`
         }}>
           <div className="max-w-2xl z-10">
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm tracking-wide">
               IMDb Top Film
             </span>
             <h1 className="text-3xl md:text-5xl font-black mt-3 mb-3 text-slate-900 leading-tight drop-shadow-sm">
-              {heroMovie.Series_Title}
+              {heroMovie.series_title}
             </h1>
             <p className="text-slate-600 text-sm md:text-base line-clamp-3 mb-6 leading-relaxed font-normal">
               {heroMovie.Overview}
@@ -273,7 +273,7 @@ export default function App() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {displayedMovies.map((movie, index) => {
               if (!movie) return null;
-              const currentMovieId = movie._id || movie.id || movie.Series_Title || index;
+              const currentMovieId = movie._id || movie.id || movie.series_title || index;
 
               return (
                 <MovieCard 
@@ -283,7 +283,7 @@ export default function App() {
                   isFavorite={favorites.some((fav) => 
                     (fav._id && movie._id && fav._id === movie._id) || 
                     (fav.id && movie.id && fav.id === movie.id) ||
-                    (fav.Series_Title === movie.Series_Title)
+                    (fav.series_title === movie.series_title)
                   )}
                   onToggleFavorite={toggleFavorite}
                 />
@@ -364,10 +364,10 @@ export default function App() {
 
             {/* Header Modal Detail Film */}
             <div className="relative h-64 md:h-80 bg-cover bg-center flex items-end p-6" style={{
-              backgroundImage: `linear-gradient(to top, #FFFFFF 5%, transparent 60%), linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 70%), url(${getValidPosterUrl(selectedMovie?.Poster_Link)})`
+              backgroundImage: `linear-gradient(to top, #FFFFFF 5%, transparent 60%), linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 70%), url(${getValidPosterUrl(selectedMovie?.poster_link)})`
             }}>
               <div className="z-10">
-                <h2 className="text-2xl md:text-4xl font-black text-white drop-shadow-md">{selectedMovie.Series_Title}</h2>
+                <h2 className="text-2xl md:text-4xl font-black text-white drop-shadow-md">{selectedMovie.series_title}</h2>
                 <div className="flex items-center gap-3 mt-3">
                   <span className="text-blue-600 bg-blue-50 font-bold text-xs px-2 py-0.5 rounded-full border border-blue-200">
                     IMDb {selectedMovie.IMDB_Rating}
@@ -406,20 +406,20 @@ export default function App() {
                   <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
                     {recommendations.map(rec => (
                       <div 
-                        key={rec._id || rec.Series_Title} 
+                        key={rec._id || rec.series_title} 
                         onClick={() => handleSelectMovie(rec)} 
                         className="cursor-pointer group relative rounded-lg overflow-hidden bg-slate-50 hover:shadow-md transition border border-slate-100"
                       >
                         <img 
-                          src={getValidPosterUrl(rec.Poster_Link)} 
-                            alt={rec.Series_Title || 'Recommendation'} 
+                          src={getValidPosterUrl(rec.poster_link)} 
+                            alt={rec.series_title || 'Recommendation'} 
                             className="h-32 w-full object-cover group-hover:scale-105 transition duration-300" 
                             onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop'; 
                           }}
                         />
-                        <div className="p-2 text-xs truncate font-medium text-slate-700">{rec.Series_Title}</div>
+                        <div className="p-2 text-xs truncate font-medium text-slate-700">{rec.series_title}</div>
                       </div>
                     ))}
                   </div>
