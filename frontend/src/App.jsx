@@ -167,7 +167,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-[#2c2c2c] min-h-screen text-slate-800 font-sans selection:bg-blue-600 selection:text-white flex flex-col justify-between">
+    <div className="bg-[#2f2f2f] min-h-screen text-slate-800 font-sans selection:bg-blue-600 selection:text-white flex flex-col justify-between">
       
       {/* NAVBAR */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-12 py-3 md:py-4 flex items-center justify-between gap-3 flex-wrap md:flex-nowrap ${
@@ -388,7 +388,7 @@ export default function App() {
           </div>
 
           {/* Hak Cipta */}
-          <div className="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-slate-100 text-slate-400 text-xl gap-2">
+          <div className="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-slate-100 text-slate-400 text-sm gap-2">
             <p>© {new Date().getFullYear()} Raiflix by Sentot Ali Basah.</p>
           </div>
         </div>
