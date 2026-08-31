@@ -15,13 +15,20 @@ function MovieRecommender() {
     setError('');
 
     try {
-      // Panggil Express Backend (Port 5000)
-      const res = await axios.get(`${import.meta.env.VITE_RECOMMEND_URL}?title=${encodeURIComponent(title)}`);
+      const res = await axios.get(
+        `${import.meta.env.VITE_ML_API_URL}?title=${encodeURIComponent(title)}`
+      );
       
-      // PERHATIKAN: Struktur response dari FastAPI melalui Express adalah res.data.recommendations
-      setRecommendations(res.data.recommendations || []);
+      // Struktur response dari FastAPI melalui Express adalah res.data.recommendations
+      setRecommendations(res.data?.recommendations || []);
     } catch (err) {
-      setError(err.response?.data?.message || 'Gagal mengambil rekomendasi');
+      // FastAPI biasanya kirim detail, bukan message
+      const msg =
+        err.response?.data?.detail?.[0]?.msg ||
+        err.response?.data?.message ||
+        err.message ||
+        'Gagal mengambil rekomendasi';
+      setError(msg);
       setRecommendations([]);
     } finally {
       setLoading(false);
