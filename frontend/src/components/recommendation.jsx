@@ -16,7 +16,7 @@ function MovieRecommender() {
 
     try {
       // Panggil Express Backend (Port 5000)
-      const res = await axios.get(`http://localhost:5000/api/recommendations?title=${encodeURIComponent(title)}`);
+      const res = await axios.get(`${import.meta.env.VITE_RECOMMEND_URL}?title=${encodeURIComponent(title)}`);
       
       // PERHATIKAN: Struktur response dari FastAPI melalui Express adalah res.data.recommendations
       setRecommendations(res.data.recommendations || []);

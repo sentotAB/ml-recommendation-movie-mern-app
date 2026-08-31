@@ -167,7 +167,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-[#F9F9F9] min-h-screen text-slate-800 font-sans selection:bg-blue-600 selection:text-white flex flex-col justify-between">
+    <div className="bg-[#2c2c2c] min-h-screen text-slate-800 font-sans selection:bg-blue-600 selection:text-white flex flex-col justify-between">
       
       {/* NAVBAR */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-12 py-3 md:py-4 flex items-center justify-between gap-3 flex-wrap md:flex-nowrap ${
@@ -388,7 +388,7 @@ export default function App() {
           </div>
 
           {/* Hak Cipta */}
-          <div className="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-slate-100 text-slate-400 text-xs gap-2">
+          <div className="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-slate-100 text-slate-400 text-xl gap-2">
             <p>© {new Date().getFullYear()} Raiflix by Sentot Ali Basah.</p>
           </div>
         </div>
@@ -410,7 +410,7 @@ export default function App() {
               backgroundImage: `linear-gradient(to top, #FFFFFF 8%, transparent 55%), linear-gradient(to right, rgba(0,0,0,0.55) 0%, transparent 65%), url(${getValidPosterUrl(selectedMovie?.Poster_Link)})`
             }}>
               <div className="z-10 space-y-3 max-w-xl">
-                <h2 className="text-2xl md:text-4xl font-black text-white drop-shadow-md">{selectedMovie.Series_Title}</h2>
+                <h2 className="text-2xl md:text-4xl font-white text-black drop-shadow-md">{selectedMovie.Series_Title}</h2>
                 <div className="flex items-center flex-wrap gap-3">
                   <span className="text-blue-600 bg-blue-50 font-bold text-xs px-2 py-0.5 rounded-full border border-blue-200">
                     IMDb {selectedMovie.IMDB_Rating}
