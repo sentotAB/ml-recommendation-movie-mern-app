@@ -1,10 +1,15 @@
 // tmdbService.js
 import axios from 'axios';
 
-const TMDB_API_KEY = process.env.TMDB_API_KEY;
+const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 export const getMovieTrailerKey = async (movieTitle) => {
+  if (!TMDB_API_KEY) {
+    console.error('VITE_TMDB_API_KEY belum di-set di .env');
+    return null;
+  }
+
   try {
     // Tahap 1: Cari movie_id berdasarkan judul film
     const searchResponse = await axios.get(`${BASE_URL}/search/movie`, {
@@ -15,7 +20,7 @@ export const getMovieTrailerKey = async (movieTitle) => {
     });
 
     const results = searchResponse.data.results;
-    if (results.length === 0) return null; // Film tidak ditemukan
+    if (!results || results.length === 0) return null; // Film tidak ditemukan
 
     const movieId = results[0].id; // Ambil ID film pertama yang cocok
 
@@ -36,7 +41,7 @@ export const getMovieTrailerKey = async (movieTitle) => {
     // Kembalikan key YouTube (jika tidak ada trailer, ambil video pertama apa saja)
     return trailer ? trailer.key : (videos[0]?.key || null);
   } catch (error) {
-    console.error("Gagal mengambil trailer dari TMDB:", error);
+    console.error('Gagal mengambil trailer dari TMDB:', error);
     return null;
   }
 };

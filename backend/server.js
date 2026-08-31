@@ -8,6 +8,7 @@ const movieRoutes = require('./routes/movieRoutes');
 
 const app = express();
 
+
 // 1. Konfigurasi CORS
 app.use(cors({
   origin: '*', // Izinkan semua origin selama masa development

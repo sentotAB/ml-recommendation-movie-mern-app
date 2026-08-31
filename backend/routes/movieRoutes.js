@@ -6,7 +6,7 @@ const Movie = require('../models/Movie');
 // Fetch semua movies dengan opsil search, genre, year filter, dan sorting
 router.get('/', async (req, res) => {
   try {
-    const { search, genre, year, sort, page = 1, limit = 12 } = req.query;
+    const { search, genre, year, sort, page = 1, limit = 20 } = req.query;
     let query = {};
 
     // Validasi input search
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
     if (sort === 'year_asc') sortOptions.Released_Year = 1;
 
     const pageNum = Math.max(1, parseInt(page) || 1);
-    const limitNum = Math.max(1, parseInt(limit) || 12);
+    const limitNum = Math.max(1, parseInt(limit) || 20);
 
     const movies = await Movie.find(query)
       .sort(sortOptions)
