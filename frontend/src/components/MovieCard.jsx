@@ -27,10 +27,14 @@ const getValidPosterUrl = (posterLink) => {
 
 function MovieCard({ movie, onClick, isFavorite, onToggleFavorite }) {
   if (!movie) return null;
+  const title = movie.series_title;
+  const rawPoster = movie.poster_link;
+  const poster = getValidPosterUrl;
+  
   return (
     <div onClick={() => onClick(movie)} className="bg-white rounded-xl shadow cursor-pointer p-2">
-      <img src={movie.poster_link} alt={movie.series_title} className="w-full h-48 object-cover rounded" />
-      <h3 className="font-bold text-sm mt-2">{movie.series_title}</h3>
+      <img src={poster} alt={title} className="w-full h-48 object-cover rounded" />
+      <h3 className="font-bold text-sm mt-2">{title}</h3>
     </div>
   );
 }
