@@ -128,8 +128,12 @@ export default function App() {
 
   const heroMovie = movies.length > 0 ? movies[0] : null;
   const displayedMovies = showFavoritesOnly ? favorites : movies;
-
-  const DEFAULT_POSTER = 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop';
+  const TMDB_IMG_BASE = 'https://image.tmdb.org/t/b/';
+  
+  function getTmdbPoster (path, size = 'w500') {
+    if (!path) return 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop';
+      return `${TMDB_IMG_BASE}${size}${path}`;
+  }
 
   const getValidPosterUrl = (url) => {
     if (!url || url === 'undefined' || url === 'null' || url.trim() === '') {
