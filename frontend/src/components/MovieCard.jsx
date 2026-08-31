@@ -14,14 +14,19 @@ const API_BASE = `${BASE_URL}/movies`;
 const GENRES = ['Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Horror', 'Mystery', 'Sci-Fi'];
 const YEARS = Array.from({ length: 105 }, (_, i) => (2024 - i).toString());
 
-
+const TMDB_IMG_BASE = 'https://image.tmdb.org/t/p/w500';
 const DEFAULT_POSTER = 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1280&auto=format&fit=crop';
 
 
-const getValidPosterUrl = (posterLink) => {
-  if (posterLink && posterLink !== 'undefined' && posterLink !== 'null' && posterLink.trim() !== '') {
-    return posterLink;
-  }
+const getValidPosterUrl = (posterPath) => {
+  if (!posterPath) 
+    return DEFAULT_POSTER;
+  if (posterPath.startsWith('http'))
+    return posterPath;
+  if (posterPath.startsWith('https'))
+    return posterPath;
+  if (posterPath.startsWith('/'))
+    return TMDB_IMG_BASE + posterPath;
   return DEFAULT_POSTER;
 };
 
@@ -33,7 +38,7 @@ function MovieCard({ movie, onClick, isFavorite, onToggleFavorite }) {
   
   return (
     <div onClick={() => onClick(movie)} className="bg-white rounded-xl shadow cursor-pointer p-2">
-      <img src={poster} alt={title} className="w-full h-48 object-cover rounded" />
+      <img src={poster} alt={title} referrerPolicy="no-referrer" className="w-full h-48 object-cover rounded" />
       <h3 className="font-bold text-sm mt-2">{title}</h3>
     </div>
   );
