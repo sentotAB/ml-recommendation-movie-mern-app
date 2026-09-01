@@ -457,7 +457,7 @@ export default function App() {
                   <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
                     {recommendations.map(rec => (
                       <div 
-                        key={rec._id || rec.series_title} 
+                        key={rec._id || rec.Series_Title} 
                         onClick={() => handleSelectMovie(rec)} 
                         className="cursor-pointer group relative rounded-md overflow-hidden bg-slate-50 hover:shadow-md hover:scale-105 transition duration-300 border border-slate-100"
                       >
@@ -470,7 +470,7 @@ export default function App() {
                             e.target.src = '/no-poster.svg'; 
                           }}
                         />
-                        <div className="p-2 text-xs truncate font-medium text-slate-700">{rec.series_title}</div>
+                        <div className="p-2 text-xs truncate font-medium text-slate-700">{rec.Series_Title}</div>
                       </div>
                     ))}
                   </div>
