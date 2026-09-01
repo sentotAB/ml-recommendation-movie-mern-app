@@ -15,7 +15,7 @@ export default function MovieCard({ movie, onClick, isFavorite, onToggleFavorite
   return (
     <div
       onClick={() => onClick(movie)}
-      className="bg-white rounded-xl shadow cursor-pointer p-2 relative"
+      className="rounded-xl cursor-pointer relative overflow-hidden"
     >
       <img
         src={getValidPosterUrl(movie.Poster_Link)}
@@ -26,7 +26,6 @@ export default function MovieCard({ movie, onClick, isFavorite, onToggleFavorite
           e.target.src = DEFAULT_POSTER;
         }}
       />
-      <h3 className="font-bold text-sm mt-2 truncate">{movie.Series_Title}</h3>
 
       {onToggleFavorite && (
         <button
@@ -36,10 +35,12 @@ export default function MovieCard({ movie, onClick, isFavorite, onToggleFavorite
           }}
           className="absolute top-3 right-3"
         >
-          {isFavorite ? '❤️' : '🤍'}
+          <span style={{ color: isFavorite ? 'red' : 'rgba(0,0,0,0.3)' }}>
+            {isFavorite ? '❤️' : '🤍'}
+          </span>
         </button>
+
       )}
     </div>
   );
 }
-

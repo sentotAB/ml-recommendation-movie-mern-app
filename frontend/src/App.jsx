@@ -98,7 +98,7 @@ export default function App() {
       setShowTrailer(false);
       setTrailerKey(null);
 
-      if (movieData.series_title) {
+      if (movieData.Series_Title) {
         try {
           const recRes = await axios.get(
             `${ML_BASE_URL}/recommend?title=${encodeURIComponent(movieData.Series_Title)}&num=10`
@@ -134,11 +134,11 @@ export default function App() {
 
   const toggleFavorite = (movie) => {
     const exists = favorites.some((fav) => 
-      (movie._id && fav._id === movie._id) || fav.series_title === movie.series_title
+      (movie._id && fav._id === movie._id) || fav.Series_Title === movie.Series_Title
     );
     if (exists) {
       setFavorites(favorites.filter((fav) => 
-        (movie._id && fav._id !== movie._id) || fav.series_title !== movie.series_title
+        (movie._id && fav._id !== movie._id) || fav.Series_Title !== movie.Series_Title
       ));
     } else {
       setFavorites([...favorites, movie]);
@@ -303,7 +303,7 @@ export default function App() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
             {displayedMovies.map((movie, index) => {
               if (!movie) return null;
-              const currentMovieId = movie._id || movie.id || movie.series_title || index;
+              const currentMovieId = movie._id || movie.id || movie.Series_Title || index;
 
               return (
                 <div
