@@ -34,7 +34,7 @@ export default function MovieCard({ movie, onClick, isFavorite, onToggleFavorite
             e.stopPropagation();
             onToggleFavorite(movie);
           }}
-          className="absolute top-3 right-3 bg-white/80 rounded-full p-1"
+          className="absolute top-3 right-3"
         >
           {isFavorite ? '❤️' : '🤍'}
         </button>

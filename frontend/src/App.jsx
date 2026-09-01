@@ -285,8 +285,8 @@ export default function App() {
       {/* KATALOG FILM (GRID & ROW) */}
       <main className={`px-4 md:px-12 ${showFavoritesOnly ? 'pt-28' : 'pt-4'} relative z-20 pb-16`}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg md:text-2xl font-bold text-slate-900 tracking-tight">
-            {showFavoritesOnly ? 'Daftar Favorit Saya' : 'Sedang Tren Sekarang'}
+          <h2 className="text-lg md:text-2xl font-bold text-slate-200 tracking-tight">
+            {showFavoritesOnly ? 'Daftar Favorit Saya' : 'Klik pada film untuk menonton trailer resminya'}
           </h2>
           {(search || selectedGenre || selectedYear) && (
             <button onClick={handleResetFilters} className="text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline">
